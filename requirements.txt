@@ -1,0 +1,7 @@
+datasets
+transformers==4.46.1
+torch
+lm_eval==0.3.0
+accelerate==1.1.0
+optimum==1.15.0
+tqdm
