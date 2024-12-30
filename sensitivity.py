@@ -36,7 +36,7 @@ def calib_sensitivity_ppl(model, calib_loader, args, use_cache=True):
     linear_info = {k: v for k, v in linear_info.items() if "k_proj" in v["full_name"] or "v_proj" in v["full_name"]}
     sensitivity_dict = {}
     if args.compress_kv_cache:
-        param_ratio_candidates = [0.05 * i for i in range(8, 21)]
+        param_ratio_candidates = [(0.25 + i * 0.05) for i in range(0, 16)]
     else:
         param_ratio_candidates = [0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
     input_ids = torch.cat([_["input_ids"] for _ in calib_loader], 0)

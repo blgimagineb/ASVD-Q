@@ -184,7 +184,7 @@ if __name__ == "__main__":
         "--scaling_method",
         type=str,
         default="abs_mean",
-        choices=["abs_mean", "abs_max", "fisher", "fisher_abs_mean", "covariance", "abs_mean_q"],
+        choices=["abs_mean", "abs_max", "fisher", "fisher_abs_mean", "abs_mean_q"],
         help="scaling method",
     )
     parser.add_argument(
