@@ -15,9 +15,9 @@ def remove_scaling_attributes(model):
     for name, module in model.named_modules():
         if isinstance(module, nn.Linear) and ("k_proj" in name or "v_proj" in name):
             if hasattr(module, 'in_scale_matrix'):
-                del module.scaling_diag_matrix
+                del module.in_scale_matrix
             if hasattr(module, 'out_scale_matrix'):
-                del module.scaling_inverse
+                del module.out_scale_matrix
 def matrix_alpha(matrix, alpha):
     # Clean the matrix
 
@@ -52,6 +52,7 @@ def main(args):
         calib_loader = get_calib_data(
             args.calib_dataset, tokenizer, model_id, args.n_calib_samples, seed=args.seed, use_bos=args.use_bos
         )
+
         calib_input_distribution(model, calib_loader, args.scaling_method, args.use_cache)
         if args.sensitivity_metric == "ppl":
             sensitivity = calib_sensitivity_ppl(model, calib_loader, args, args.use_cache)
